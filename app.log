@@ -1,0 +1,809 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :resolveMainClassName UP-TO-DATE
+
+> Task :bootRun
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.10)
+
+2026-02-13T11:04:48.232+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Starting ProductApplication using Java 21.0.10 with PID 40500 (C:\Users\mypc\Documents\projects\haulic-vibecode\product\build\classes\java\main started by mypc in C:\Users\mypc\Documents\projects\haulic-vibecode\product)
+2026-02-13T11:04:48.233+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : The following 1 profile is active: "dev"
+2026-02-13T11:04:48.260+09:00  INFO 40500 --- [product] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2026-02-13T11:04:48.260+09:00  INFO 40500 --- [product] [  restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2026-02-13T11:04:48.269+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file C:\Users\mypc\Documents\projects\haulic-vibecode\product\compose.yaml
+2026-02-13T11:04:48.896+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2026-02-13T11:04:49.310+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T11:04:49.311+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-13T11:04:49.398+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 82 ms. Found 2 JPA repository interfaces.
+2026-02-13T11:04:49.408+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T11:04:49.408+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-13T11:04:49.419+09:00  INFO 40500 --- [product] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.haulic.product.interaction.infrastructure.JpaUserProductInteractionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-13T11:04:49.419+09:00  INFO 40500 --- [product] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.haulic.product.product.infrastructure.JpaProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-13T11:04:49.419+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2026-02-13T11:04:49.761+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2026-02-13T11:04:49.769+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-13T11:04:49.769+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-13T11:04:49.797+09:00  INFO 40500 --- [product] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-13T11:04:49.798+09:00  INFO 40500 --- [product] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 890 ms
+2026-02-13T11:04:50.006+09:00  INFO 40500 --- [product] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-13T11:04:50.038+09:00  INFO 40500 --- [product] [  restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-13T11:04:50.057+09:00  INFO 40500 --- [product] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-13T11:04:50.531+09:00  INFO 40500 --- [product] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-13T11:04:50.556+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-13T11:04:50.809+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26aa6bdb
+2026-02-13T11:04:50.811+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-13T11:04:50.835+09:00  WARN 40500 --- [product] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-13T11:04:50.857+09:00  INFO 40500 --- [product] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 18.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-13T11:04:51.436+09:00  INFO 40500 --- [product] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-13T11:04:51.477+09:00  INFO 40500 --- [product] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-13T11:04:51.732+09:00  WARN 40500 --- [product] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-13T11:04:51.942+09:00  WARN 40500 --- [product] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2026-02-13T11:04:51.959+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9090 (http) with context path '/'
+2026-02-13T11:04:51.964+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Started ProductApplication in 3.997 seconds (process running for 4.269)
+2026-02-13T11:04:51.966+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Loading sample data...
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-02-13T11:04:52.036+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Created 8 products
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+2026-02-13T11:04:52.120+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Created sample interactions
+2026-02-13T11:04:52.120+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Sample data loaded successfully!
+2026-02-13T11:05:06.231+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-13T11:05:06.231+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-13T11:05:06.232+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-02-13T11:05:06.254+09:00  INFO 40500 --- [product] [nio-9090-exec-1] .i.ItemBasedCollaborativeFilteringEngine : Generating personalized recommendations for user: user1
+2026-02-13T11:05:06.471+09:00  INFO 40500 --- [product] [nio-9090-exec-1] .i.ItemBasedCollaborativeFilteringEngine : Starting recommendation model rebuild...
+Hibernate: 
+    select
+        upi1_0.id,
+        upi1_0.created_at,
+        upi1_0.interaction_type,
+        upi1_0.product_id,
+        upi1_0.user_id,
+        upi1_0.weight 
+    from
+        user_product_interactions upi1_0
+2026-02-13T11:05:06.542+09:00  INFO 40500 --- [product] [nio-9090-exec-1] .c.h.p.r.i.RecommendationCacheRepository : Cached similarity matrix with 8 products
+2026-02-13T11:05:06.542+09:00  INFO 40500 --- [product] [nio-9090-exec-1] .i.ItemBasedCollaborativeFilteringEngine : Recommendation model rebuild completed. Processed 8 products
+Hibernate: 
+    select
+        upi1_0.id,
+        upi1_0.created_at,
+        upi1_0.interaction_type,
+        upi1_0.product_id,
+        upi1_0.user_id,
+        upi1_0.weight 
+    from
+        user_product_interactions upi1_0 
+    where
+        upi1_0.user_id=?
+2026-02-13T11:05:06.561+09:00  INFO 40500 --- [product] [nio-9090-exec-1] .i.ItemBasedCollaborativeFilteringEngine : Generated 2 recommendations for user: user1
+2026-02-13T11:05:11.590+09:00  INFO 40500 --- [product] [nio-9090-exec-3] .i.ItemBasedCollaborativeFilteringEngine : Generating similar products for product: 1
+2026-02-13T11:05:11.594+09:00  INFO 40500 --- [product] [nio-9090-exec-3] .i.ItemBasedCollaborativeFilteringEngine : Generated 5 similar products for product: 1
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+2026-02-13T11:05:12.772+09:00  INFO 40500 --- [product] [nio-9090-exec-4] k.c.h.p.i.a.RecordInteractionService     : Recorded VIEW interaction for user testuser on product 1
+2026-02-13T11:05:13.501+09:00  INFO 40500 --- [product] [nio-9090-exec-6] .i.ItemBasedCollaborativeFilteringEngine : Starting recommendation model rebuild...
+Hibernate: 
+    select
+        upi1_0.id,
+        upi1_0.created_at,
+        upi1_0.interaction_type,
+        upi1_0.product_id,
+        upi1_0.user_id,
+        upi1_0.weight 
+    from
+        user_product_interactions upi1_0
+2026-02-13T11:05:13.512+09:00  INFO 40500 --- [product] [nio-9090-exec-6] .c.h.p.r.i.RecommendationCacheRepository : Cached similarity matrix with 8 products
+2026-02-13T11:05:13.512+09:00  INFO 40500 --- [product] [nio-9090-exec-6] .i.ItemBasedCollaborativeFilteringEngine : Recommendation model rebuild completed. Processed 8 products
+2026-02-13T13:20:46.687+09:00  INFO 40500 --- [product] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 35 class path changes (0 additions, 35 deletions, 0 modifications)
+2026-02-13T13:20:46.719+09:00  INFO 40500 --- [product] [       Thread-1] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-13T13:20:46.728+09:00  INFO 40500 --- [product] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-13T13:20:46.786+09:00  INFO 40500 --- [product] [       Thread-1] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-13T13:20:46.795+09:00  INFO 40500 --- [product] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2026-02-13T13:20:46.797+09:00  INFO 40500 --- [product] [       Thread-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.10)
+
+2026-02-13T13:20:46.972+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Starting ProductApplication using Java 21.0.10 with PID 40500 (C:\Users\mypc\Documents\projects\haulic-vibecode\product\build\classes\java\main started by mypc in C:\Users\mypc\Documents\projects\haulic-vibecode\product)
+2026-02-13T13:20:46.972+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : The following 1 profile is active: "dev"
+2026-02-13T13:20:46.980+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file C:\Users\mypc\Documents\projects\haulic-vibecode\product\compose.yaml
+2026-02-13T13:20:47.520+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2026-02-13T13:20:47.803+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T13:20:47.804+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-13T13:20:47.806+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 1 ms. Found 0 JPA repository interfaces.
+2026-02-13T13:20:47.811+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T13:20:47.811+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-13T13:20:47.812+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 0 ms. Found 0 Redis repository interfaces.
+2026-02-13T13:20:47.949+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2026-02-13T13:20:47.951+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-13T13:20:47.952+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-13T13:20:47.976+09:00  INFO 40500 --- [product] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-13T13:20:47.976+09:00  INFO 40500 --- [product] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 450 ms
+2026-02-13T13:20:48.042+09:00  INFO 40500 --- [product] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-13T13:20:48.047+09:00  INFO 40500 --- [product] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-13T13:20:48.066+09:00  INFO 40500 --- [product] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-13T13:20:48.068+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Starting...
+2026-02-13T13:20:48.099+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-2 - Added connection org.postgresql.jdbc.PgConnection@3c283db0
+2026-02-13T13:20:48.099+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Start completed.
+2026-02-13T13:20:48.115+09:00  WARN 40500 --- [product] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-13T13:20:48.120+09:00  INFO 40500 --- [product] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-2)']
+	Database driver: undefined/unknown
+	Database version: 18.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-13T13:20:48.148+09:00  INFO 40500 --- [product] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-13T13:20:48.148+09:00  INFO 40500 --- [product] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-13T13:20:48.180+09:00  WARN 40500 --- [product] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-13T13:20:48.376+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-13T13:20:48.388+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9090 (http) with context path '/'
+2026-02-13T13:20:48.392+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Started ProductApplication in 1.461 seconds (process running for 8160.697)
+2026-02-13T13:20:48.396+09:00  INFO 40500 --- [product] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+   JacksonAutoConfiguration.JacksonObjectMapperConfiguration#jacksonObjectMapper matched:
+      - @ConditionalOnMissingBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+   RedisAutoConfiguration#redisTemplate matched:
+      - @ConditionalOnSingleCandidate (types: org.springframework.data.redis.connection.RedisConnectionFactory; SearchStrategy: all) found a single bean 'redisConnectionFactory'; @ConditionalOnMissingBean (names: redisTemplate; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-02-13T13:20:49.817+09:00  INFO 40500 --- [product] [   File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 36 class path changes (35 additions, 0 deletions, 1 modification)
+2026-02-13T13:20:49.818+09:00  INFO 40500 --- [product] [      Thread-29] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2026-02-13T13:20:49.822+09:00  INFO 40500 --- [product] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2026-02-13T13:20:49.823+09:00  INFO 40500 --- [product] [      Thread-29] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2026-02-13T13:20:49.823+09:00  INFO 40500 --- [product] [      Thread-29] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2026-02-13T13:20:49.825+09:00  INFO 40500 --- [product] [      Thread-29] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.10)
+
+2026-02-13T13:20:49.918+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Starting ProductApplication using Java 21.0.10 with PID 40500 (C:\Users\mypc\Documents\projects\haulic-vibecode\product\build\classes\java\main started by mypc in C:\Users\mypc\Documents\projects\haulic-vibecode\product)
+2026-02-13T13:20:49.919+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : The following 1 profile is active: "dev"
+2026-02-13T13:20:49.924+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : Using Docker Compose file C:\Users\mypc\Documents\projects\haulic-vibecode\product\compose.yaml
+2026-02-13T13:20:50.388+09:00  INFO 40500 --- [product] [  restartedMain] .s.b.d.c.l.DockerComposeLifecycleManager : There are already Docker Compose services running, skipping startup
+2026-02-13T13:20:50.600+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T13:20:50.600+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-13T13:20:50.621+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 19 ms. Found 2 JPA repository interfaces.
+2026-02-13T13:20:50.624+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Multiple Spring Data modules found, entering strict repository configuration mode
+2026-02-13T13:20:50.624+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-02-13T13:20:50.631+09:00  INFO 40500 --- [product] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.haulic.product.interaction.infrastructure.JpaUserProductInteractionRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-13T13:20:50.632+09:00  INFO 40500 --- [product] [  restartedMain] .RepositoryConfigurationExtensionSupport : Spring Data Redis - Could not safely identify store assignment for repository candidate interface kr.co.haulic.product.product.infrastructure.JpaProductRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2026-02-13T13:20:50.632+09:00  INFO 40500 --- [product] [  restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2026-02-13T13:20:50.733+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 9090 (http)
+2026-02-13T13:20:50.734+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-02-13T13:20:50.734+09:00  INFO 40500 --- [product] [  restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-13T13:20:50.761+09:00  INFO 40500 --- [product] [  restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-02-13T13:20:50.761+09:00  INFO 40500 --- [product] [  restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 369 ms
+2026-02-13T13:20:50.804+09:00  INFO 40500 --- [product] [  restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-13T13:20:50.808+09:00  INFO 40500 --- [product] [  restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-13T13:20:50.820+09:00  INFO 40500 --- [product] [  restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-13T13:20:50.822+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2026-02-13T13:20:50.839+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.postgresql.jdbc.PgConnection@363b25dc
+2026-02-13T13:20:50.839+09:00  INFO 40500 --- [product] [  restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2026-02-13T13:20:50.842+09:00  WARN 40500 --- [product] [  restartedMain] org.hibernate.orm.deprecation            : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-02-13T13:20:50.843+09:00  INFO 40500 --- [product] [  restartedMain] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-3)']
+	Database driver: undefined/unknown
+	Database version: 18.2
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-13T13:20:50.907+09:00  INFO 40500 --- [product] [  restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-13T13:20:50.957+09:00  INFO 40500 --- [product] [  restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-13T13:20:51.066+09:00  WARN 40500 --- [product] [  restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-13T13:20:51.192+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2026-02-13T13:20:51.203+09:00  INFO 40500 --- [product] [  restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 9090 (http) with context path '/'
+2026-02-13T13:20:51.206+09:00  INFO 40500 --- [product] [  restartedMain] k.co.haulic.product.ProductApplication   : Started ProductApplication in 1.315 seconds (process running for 8163.511)
+2026-02-13T13:20:51.207+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Loading sample data...
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        products
+        (category_id, created_at, description, image_url, is_active, name, price, purchase_count, updated_at, view_count) 
+    values
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2026-02-13T13:20:51.269+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Created 8 products
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+Hibernate: 
+    insert 
+    into
+        user_product_interactions
+        (created_at, interaction_type, product_id, user_id, weight) 
+    values
+        (?, ?, ?, ?, ?)
+2026-02-13T13:20:51.404+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Created sample interactions
+2026-02-13T13:20:51.405+09:00  INFO 40500 --- [product] [  restartedMain] kr.co.haulic.product.config.DataLoader   : Sample data loaded successfully!
+2026-02-13T13:20:51.406+09:00  INFO 40500 --- [product] [  restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation delta:
+
+
+==========================
+CONDITION EVALUATION DELTA
+==========================
+
+
+Positive matches:
+-----------------
+
+    None
+
+
+Negative matches:
+-----------------
+
+   JacksonAutoConfiguration.JacksonObjectMapperConfiguration#jacksonObjectMapper:
+      Did not match:
+         - @ConditionalOnMissingBean (types: com.fasterxml.jackson.databind.ObjectMapper; SearchStrategy: all) found beans of type 'com.fasterxml.jackson.databind.ObjectMapper' objectMapper (OnBeanCondition)
+
+   RedisAutoConfiguration#redisTemplate:
+      Did not match:
+         - @ConditionalOnMissingBean (names: redisTemplate; SearchStrategy: all) found beans named redisTemplate (OnBeanCondition)
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+2026-02-13T13:21:31.902+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-13T13:21:31.902+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-02-13T13:21:31.903+09:00  INFO 40500 --- [product] [nio-9090-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-02-13T13:21:40.934+09:00  INFO 40500 --- [product] [nio-9090-exec-2] .i.ItemBasedCollaborativeFilteringEngine : Generating personalized recommendations for user: user1
+2026-02-13T13:21:40.964+09:00  INFO 40500 --- [product] [nio-9090-exec-2] .i.ItemBasedCollaborativeFilteringEngine : Starting recommendation model rebuild...
+Hibernate: 
+    select
+        upi1_0.id,
+        upi1_0.created_at,
+        upi1_0.interaction_type,
+        upi1_0.product_id,
+        upi1_0.user_id,
+        upi1_0.weight 
+    from
+        user_product_interactions upi1_0
+2026-02-13T13:21:40.979+09:00  INFO 40500 --- [product] [nio-9090-exec-2] .c.h.p.r.i.RecommendationCacheRepository : Cached similarity matrix with 8 products
+2026-02-13T13:21:40.979+09:00  INFO 40500 --- [product] [nio-9090-exec-2] .i.ItemBasedCollaborativeFilteringEngine : Recommendation model rebuild completed. Processed 8 products
+Hibernate: 
+    select
+        upi1_0.id,
+        upi1_0.created_at,
+        upi1_0.interaction_type,
+        upi1_0.product_id,
+        upi1_0.user_id,
+        upi1_0.weight 
+    from
+        user_product_interactions upi1_0 
+    where
+        upi1_0.user_id=?
+2026-02-13T13:21:40.985+09:00  INFO 40500 --- [product] [nio-9090-exec-2] .i.ItemBasedCollaborativeFilteringEngine : Generated 2 recommendations for user: user1
+
+> Task :bootRun FAILED
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':bootRun'.
+> Process 'command 'C:\Users\mypc\.jdks\liberica-full-21.0.10\bin\java.exe'' finished with non-zero exit value 1
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 2h 17m 48s
+4 actionable tasks: 1 executed, 3 up-to-date
