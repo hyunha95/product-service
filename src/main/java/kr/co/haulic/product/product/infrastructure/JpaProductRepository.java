@@ -1,7 +1,10 @@
 package kr.co.haulic.product.product.infrastructure;
 
-import kr.co.haulic.product.product.domain.Product;
+import kr.co.haulic.product.product.infrastructure.entity.ProductEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface JpaProductRepository extends JpaRepository<Product, Long> {
+/**
+ * JPA Repository for ProductEntity persistence
+ */
+public interface JpaProductRepository extends JpaRepository<ProductEntity, Long> {
 }

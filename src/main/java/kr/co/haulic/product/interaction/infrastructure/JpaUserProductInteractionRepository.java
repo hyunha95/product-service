@@ -1,11 +1,14 @@
 package kr.co.haulic.product.interaction.infrastructure;
 
-import kr.co.haulic.product.interaction.domain.UserProductInteraction;
+import kr.co.haulic.product.interaction.infrastructure.entity.UserProductInteractionEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface JpaUserProductInteractionRepository extends JpaRepository<UserProductInteraction, Long> {
-    List<UserProductInteraction> findByUserId(String userId);
-    List<UserProductInteraction> findByProductId(Long productId);
+/**
+ * JPA Repository for UserProductInteractionEntity persistence
+ */
+public interface JpaUserProductInteractionRepository extends JpaRepository<UserProductInteractionEntity, Long> {
+    List<UserProductInteractionEntity> findByUserId(String userId);
+    List<UserProductInteractionEntity> findByProductId(Long productId);
 }

@@ -1,71 +1,110 @@
 package kr.co.haulic.product.product.domain;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "products")
+/**
+ * Pure domain model for Product
+ * Contains business logic and validation rules
+ * No persistence concerns (JPA annotations removed)
+ */
 @Getter
-@Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-@AllArgsConstructor
+@Builder(toBuilder = true)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private final Long id;
+    private final String name;
+    private final String description;
+    private final BigDecimal price;
+    private final String imageUrl;
+    private final String categoryId;
+    private final Integer viewCount;
+    private final Integer purchaseCount;
+    private final Boolean isActive;
+    private final LocalDateTime createdAt;
+    private final LocalDateTime updatedAt;
 
-    @Column(nullable = false)
-    private String name;
-
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
-
-    private String imageUrl;
-
-    @Column(nullable = false)
-    private String categoryId;
-
-    @Builder.Default
-    @Column(nullable = false)
-    private Integer viewCount = 0;
-
-    @Builder.Default
-    @Column(nullable = false)
-    private Integer purchaseCount = 0;
-
-    @Builder.Default
-    @Column(nullable = false)
-    private Boolean isActive = true;
-
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
+    /**
+     * Factory method for creating a new product
+     */
+    public static Product create(
+            String name,
+            String description,
+            BigDecimal price,
+            String imageUrl,
+            String categoryId
+    ) {
+        LocalDateTime now = LocalDateTime.now();
+        return Product.builder()
+                .name(name)
+                .description(description)
+                .price(price)
+                .imageUrl(imageUrl)
+                .categoryId(categoryId)
+                .viewCount(0)
+                .purchaseCount(0)
+                .isActive(true)
+                .createdAt(now)
+                .updatedAt(now)
+                .build();
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
+    /**
+     * Domain logic: Increment view count
+     * Returns a new instance (immutable pattern)
+     */
+    public Product incrementViewCount() {
+        return this.toBuilder()
+                .viewCount(this.viewCount + 1)
+                .updatedAt(LocalDateTime.now())
+                .build();
     }
 
-    public void incrementViewCount() {
-        this.viewCount++;
+    /**
+     * Domain logic: Increment purchase count
+     * Returns a new instance (immutable pattern)
+     */
+    public Product incrementPurchaseCount() {
+        return this.toBuilder()
+                .purchaseCount(this.purchaseCount + 1)
+                .updatedAt(LocalDateTime.now())
+                .build();
     }
 
-    public void incrementPurchaseCount() {
-        this.purchaseCount++;
+    /**
+     * Domain logic: Deactivate product
+     */
+    public Product deactivate() {
+        return this.toBuilder()
+                .isActive(false)
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
+    /**
+     * Domain logic: Activate product
+     */
+    public Product activate() {
+        return this.toBuilder()
+                .isActive(true)
+                .updatedAt(LocalDateTime.now())
+                .build();
+    }
+
+    /**
+     * Business validation: Check if price is valid
+     */
+    public boolean hasValidPrice() {
+        return price != null && price.compareTo(BigDecimal.ZERO) > 0;
+    }
+
+    /**
+     * Business validation: Check if product is available for purchase
+     */
+    public boolean isAvailableForPurchase() {
+        return isActive && hasValidPrice();
     }
 }
