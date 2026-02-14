@@ -39,8 +39,8 @@ public class RecommendationCacheRepository {
             String value = objectMapper.writeValueAsString(recommendations);
             redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(userRecommendationsCacheTtl));
             log.debug("Cached user recommendations for userId: {}", userId);
-        } catch (JsonProcessingException e) {
-            log.error("Failed to serialize recommendations for userId: {}", userId, e);
+        } catch (Exception e) {
+            log.error("Failed to cache recommendations for userId: {} - {}", userId, e.getMessage(), e);
         }
     }
 
@@ -52,8 +52,8 @@ public class RecommendationCacheRepository {
                 return null;
             }
             return objectMapper.readValue(value, new TypeReference<List<Recommendation>>() {});
-        } catch (JsonProcessingException e) {
-            log.error("Failed to deserialize recommendations for userId: {}", userId, e);
+        } catch (Exception e) {
+            log.error("Failed to read cached recommendations for userId: {} - {}", userId, e.getMessage(), e);
             return null;
         }
     }
@@ -64,8 +64,8 @@ public class RecommendationCacheRepository {
             String value = objectMapper.writeValueAsString(recommendations);
             redisTemplate.opsForValue().set(key, value, Duration.ofSeconds(similarityCacheTtl));
             log.debug("Cached similar products for productId: {}", productId);
-        } catch (JsonProcessingException e) {
-            log.error("Failed to serialize similar products for productId: {}", productId, e);
+        } catch (Exception e) {
+            log.error("Failed to cache similar products for productId: {} - {}", productId, e.getMessage(), e);
         }
     }
 
@@ -77,8 +77,8 @@ public class RecommendationCacheRepository {
                 return null;
             }
             return objectMapper.readValue(value, new TypeReference<List<Recommendation>>() {});
-        } catch (JsonProcessingException e) {
-            log.error("Failed to deserialize similar products for productId: {}", productId, e);
+        } catch (Exception e) {
+            log.error("Failed to read cached similar products for productId: {} - {}", productId, e.getMessage(), e);
             return null;
         }
     }
@@ -88,8 +88,8 @@ public class RecommendationCacheRepository {
             String value = objectMapper.writeValueAsString(similarityMatrix);
             redisTemplate.opsForValue().set(SIMILARITY_MATRIX_KEY, value, Duration.ofSeconds(similarityCacheTtl));
             log.info("Cached similarity matrix with {} products", similarityMatrix.size());
-        } catch (JsonProcessingException e) {
-            log.error("Failed to serialize similarity matrix", e);
+        } catch (Exception e) {
+            log.error("Failed to cache similarity matrix - {}", e.getMessage(), e);
         }
     }
 
@@ -100,14 +100,18 @@ public class RecommendationCacheRepository {
                 return Collections.emptyMap();
             }
             return objectMapper.readValue(value, new TypeReference<Map<String, Map<String, Double>>>() {});
-        } catch (JsonProcessingException e) {
-            log.error("Failed to deserialize similarity matrix", e);
+        } catch (Exception e) {
+            log.error("Failed to read cached similarity matrix - {}", e.getMessage(), e);
             return Collections.emptyMap();
         }
     }
 
     public void clearAllCaches() {
-        redisTemplate.delete(redisTemplate.keys("rec:*"));
-        log.info("Cleared all recommendation caches");
+        try {
+            redisTemplate.delete(redisTemplate.keys("rec:*"));
+            log.info("Cleared all recommendation caches");
+        } catch (Exception e) {
+            log.error("Failed to clear recommendation caches - {}", e.getMessage(), e);
+        }
     }
 }
