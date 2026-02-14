@@ -6,24 +6,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Getter
 @Builder
 @AllArgsConstructor
 public class RecommendationResponse {
 
-    private Long productId;
+    private String productId;
     private Double score;
     private String reason;
 
     // 상품 정보
     private String name;
     private String imageUrl;
-    private BigDecimal price;
-    private String categoryId;
+    private Long price;
+    private String category;
 
     public static RecommendationResponse from(Recommendation recommendation, Product product, String imageUrl) {
         return RecommendationResponse.builder()
@@ -33,12 +29,7 @@ public class RecommendationResponse {
             .name(product.getName())
             .imageUrl(imageUrl)
             .price(product.getPrice())
-            .categoryId(product.getCategoryId())
+            .category(product.getCategory())
             .build();
-    }
-
-    @Deprecated
-    public static RecommendationResponse from(Recommendation recommendation, Product product) {
-        return from(recommendation, product, product.getImageUrl());
     }
 }

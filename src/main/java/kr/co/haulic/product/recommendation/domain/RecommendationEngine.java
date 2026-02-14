@@ -11,7 +11,7 @@ public interface RecommendationEngine {
     /**
      * 상품 기반 유사 상품 추천
      */
-    List<Recommendation> generateSimilarProducts(Long productId, int limit);
+    List<Recommendation> generateSimilarProducts(String productId, int limit);
 
     /**
      * 추천 모델 재학습 (배치 작업용)

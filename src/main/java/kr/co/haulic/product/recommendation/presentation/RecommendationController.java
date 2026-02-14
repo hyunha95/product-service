@@ -31,16 +31,16 @@ public class RecommendationController {
         @RequestParam String userId,
         @RequestParam(defaultValue = "10") int limit
     ) {
-        List<Recommendation> recommendations = getPersonalizedRecommendationsUseCase.execute(userId, limit);
+        List<Recommendation> recommendations = getPersonalizedRecommendationsUseCase.getPersonalizedRecommendations(userId, limit);
         return enrichWithProductInfo(recommendations);
     }
 
     @GetMapping("/similar/{productId}")
     public List<RecommendationResponse> getSimilarProducts(
-        @PathVariable Long productId,
+        @PathVariable String productId,
         @RequestParam(defaultValue = "10") int limit
     ) {
-        List<Recommendation> recommendations = getSimilarProductsUseCase.execute(productId, limit);
+        List<Recommendation> recommendations = getSimilarProductsUseCase.getSimilarProducts(productId, limit);
         return enrichWithProductInfo(recommendations);
     }
 
@@ -50,55 +50,39 @@ public class RecommendationController {
     }
 
     private List<RecommendationResponse> enrichWithProductInfo(List<Recommendation> recommendations) {
-        // 추천된 상품 ID 목록 추출
-        List<Long> productIds = recommendations.stream()
+        List<String> productIds = recommendations.stream()
             .map(Recommendation::getProductId)
             .collect(Collectors.toList());
 
-        // 상품 정보 일괄 조회
-        Map<Long, Product> productMap = productRepository.findAllById(productIds).stream()
+        Map<String, Product> productMap = productRepository.findAllById(productIds).stream()
             .collect(Collectors.toMap(Product::getId, product -> product));
 
-        // Recommendation과 Product 정보를 결합하여 응답 생성
         return recommendations.stream()
             .filter(rec -> productMap.containsKey(rec.getProductId()))
             .map(rec -> {
                 Product product = productMap.get(rec.getProductId());
-                String imageUrl = convertToGatewayUrl(product.getImageUrl());
-                return RecommendationResponse.from(rec, product, imageUrl);
+                return RecommendationResponse.from(rec, product, convertToGatewayUrl(product.getImage()));
             })
             .collect(Collectors.toList());
     }
 
-    /**
-     * 이미지 URL을 API Gateway를 통한 URL로 변환
-     */
     private String convertToGatewayUrl(String imageUrl) {
         if (imageUrl == null || imageUrl.isEmpty()) {
             return imageUrl;
         }
 
-        // 이미 Gateway URL인 경우 그대로 반환
         if (imageUrl.startsWith(gatewayProperties.getBaseUrl())) {
             return imageUrl;
         }
 
-        // 절대 URL인 경우 경로만 추출
         if (imageUrl.startsWith("http://") || imageUrl.startsWith("https://")) {
-            // URL에서 경로 부분만 추출 (예: http://localhost:9090/uploads/... → /uploads/...)
-            int pathStart = imageUrl.indexOf("/", imageUrl.indexOf("://") + 3);
-            if (pathStart != -1) {
-                String path = imageUrl.substring(pathStart);
-                return gatewayProperties.getBaseUrl() + path;
-            }
+            return imageUrl;
         }
 
-        // 상대 경로인 경우 Gateway URL과 결합
         if (imageUrl.startsWith("/")) {
             return gatewayProperties.getBaseUrl() + imageUrl;
         }
 
-        // 그 외에는 Gateway URL + "/" + imageUrl
         return gatewayProperties.getBaseUrl() + "/" + imageUrl;
     }
 }

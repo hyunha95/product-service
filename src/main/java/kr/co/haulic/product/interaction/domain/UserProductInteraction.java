@@ -16,7 +16,7 @@ public class UserProductInteraction {
 
     private final Long id;
     private final String userId;
-    private final Long productId;
+    private final String productId;
     private final InteractionType interactionType;
     private final Double weight;
     private final LocalDateTime createdAt;
@@ -25,7 +25,7 @@ public class UserProductInteraction {
      * Factory method for creating a new user-product interaction
      * Automatically assigns weight based on interaction type
      */
-    public static UserProductInteraction create(String userId, Long productId, InteractionType type) {
+    public static UserProductInteraction create(String userId, String productId, InteractionType type) {
         return UserProductInteraction.builder()
                 .userId(userId)
                 .productId(productId)

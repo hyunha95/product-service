@@ -3,15 +3,12 @@ package kr.co.haulic.product.product.infrastructure.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- * JPA Entity for Product persistence
- * Maps to the 'recommendation_products' table in the database
- */
 @Entity
-@Table(name = "recommendation_products")
+@Table(name = "products")
 @Getter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,34 +16,55 @@ import java.time.LocalDateTime;
 public class ProductEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
 
-    @Column(columnDefinition = "TEXT")
-    private String description;
-
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal price;
-
-    private String imageUrl;
+    @Column(nullable = false)
+    private String category;
 
     @Column(nullable = false)
-    private String categoryId;
+    private Long price;
+
+    @Column(nullable = false)
+    private Integer stock;
+
+    @Column(nullable = false)
+    private String status;
+
+    private String badge;
+
+    private String image;
+
+    @Builder.Default
+    @ElementCollection
+    @CollectionTable(
+            name = "product_additional_images",
+            joinColumns = @JoinColumn(
+                    name = "product_id",
+                    foreignKey = @ForeignKey(name = "fk_product_additional_images_product")
+            )
+    )
+    @OrderColumn(name = "sort_order")
+    @Column(name = "image_url", nullable = false, length = 500)
+    private List<String> additionalImages = new ArrayList<>();
+
+    private String detailDescriptionImage;
+
+    private Long originalPrice;
 
     @Builder.Default
     @Column(nullable = false)
-    private Integer viewCount = 0;
+    private Boolean isActive = false;
 
     @Builder.Default
     @Column(nullable = false)
-    private Integer purchaseCount = 0;
+    private Double rating = 0.0;
 
     @Builder.Default
     @Column(nullable = false)
-    private Boolean isActive = true;
+    private Long reviewCount = 0L;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -54,28 +72,11 @@ public class ProductEntity {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
+    @Builder.Default
+    @Column(nullable = false)
+    private String createdBy = "system";
 
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
-
-    /**
-     * Increment view count for metrics tracking
-     */
-    public void incrementViewCount() {
-        this.viewCount++;
-    }
-
-    /**
-     * Increment purchase count for metrics tracking
-     */
-    public void incrementPurchaseCount() {
-        this.purchaseCount++;
-    }
+    @Builder.Default
+    @Column(nullable = false)
+    private String updatedBy = "system";
 }

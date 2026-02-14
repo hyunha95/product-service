@@ -14,12 +14,12 @@ public class RecommendationService implements GetPersonalizedRecommendationsUseC
     private final RecommendationEngine recommendationEngine;
 
     @Override
-    public List<Recommendation> execute(String userId, int limit) {
+    public List<Recommendation> getPersonalizedRecommendations(String userId, int limit) {
         return recommendationEngine.generatePersonalizedRecommendations(userId, limit);
     }
 
     @Override
-    public List<Recommendation> execute(Long productId, int limit) {
+    public List<Recommendation> getSimilarProducts(String productId, int limit) {
         return recommendationEngine.generateSimilarProducts(productId, limit);
     }
 }

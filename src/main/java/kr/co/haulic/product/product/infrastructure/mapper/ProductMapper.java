@@ -4,16 +4,12 @@ import kr.co.haulic.product.product.domain.Product;
 import kr.co.haulic.product.product.infrastructure.entity.ProductEntity;
 import org.springframework.stereotype.Component;
 
-/**
- * Mapper for converting between Product domain model and ProductEntity
- * Implements the anti-corruption layer between domain and infrastructure
- */
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ProductMapper {
 
-    /**
-     * Convert ProductEntity (persistence) to Product (domain model)
-     */
     public Product toDomain(ProductEntity entity) {
         if (entity == null) {
             return null;
@@ -22,21 +18,27 @@ public class ProductMapper {
         return Product.builder()
                 .id(entity.getId())
                 .name(entity.getName())
-                .description(entity.getDescription())
+                .category(entity.getCategory())
                 .price(entity.getPrice())
-                .imageUrl(entity.getImageUrl())
-                .categoryId(entity.getCategoryId())
-                .viewCount(entity.getViewCount())
-                .purchaseCount(entity.getPurchaseCount())
+                .stock(entity.getStock())
+                .status(entity.getStatus())
+                .badge(entity.getBadge())
+                .image(entity.getImage())
+                .additionalImages(entity.getAdditionalImages() != null
+                        ? List.copyOf(entity.getAdditionalImages())
+                        : List.of())
+                .detailDescriptionImage(entity.getDetailDescriptionImage())
+                .originalPrice(entity.getOriginalPrice())
                 .isActive(entity.getIsActive())
+                .rating(entity.getRating())
+                .reviewCount(entity.getReviewCount())
                 .createdAt(entity.getCreatedAt())
                 .updatedAt(entity.getUpdatedAt())
+                .createdBy(entity.getCreatedBy())
+                .updatedBy(entity.getUpdatedBy())
                 .build();
     }
 
-    /**
-     * Convert Product (domain model) to ProductEntity (persistence)
-     */
     public ProductEntity toEntity(Product domain) {
         if (domain == null) {
             return null;
@@ -45,39 +47,24 @@ public class ProductMapper {
         return ProductEntity.builder()
                 .id(domain.getId())
                 .name(domain.getName())
-                .description(domain.getDescription())
+                .category(domain.getCategory())
                 .price(domain.getPrice())
-                .imageUrl(domain.getImageUrl())
-                .categoryId(domain.getCategoryId())
-                .viewCount(domain.getViewCount())
-                .purchaseCount(domain.getPurchaseCount())
+                .stock(domain.getStock())
+                .status(domain.getStatus())
+                .badge(domain.getBadge())
+                .image(domain.getImage())
+                .additionalImages(domain.getAdditionalImages() != null
+                        ? new ArrayList<>(domain.getAdditionalImages())
+                        : new ArrayList<>())
+                .detailDescriptionImage(domain.getDetailDescriptionImage())
+                .originalPrice(domain.getOriginalPrice())
                 .isActive(domain.getIsActive())
+                .rating(domain.getRating())
+                .reviewCount(domain.getReviewCount())
                 .createdAt(domain.getCreatedAt())
                 .updatedAt(domain.getUpdatedAt())
-                .build();
-    }
-
-    /**
-     * Update existing ProductEntity with data from Product domain model
-     * Preserves entity identity and timestamps
-     */
-    public ProductEntity updateEntity(ProductEntity entity, Product domain) {
-        if (entity == null || domain == null) {
-            return entity;
-        }
-
-        return ProductEntity.builder()
-                .id(entity.getId())
-                .name(domain.getName())
-                .description(domain.getDescription())
-                .price(domain.getPrice())
-                .imageUrl(domain.getImageUrl())
-                .categoryId(domain.getCategoryId())
-                .viewCount(domain.getViewCount())
-                .purchaseCount(domain.getPurchaseCount())
-                .isActive(domain.getIsActive())
-                .createdAt(entity.getCreatedAt())  // Preserve original creation time
-                .updatedAt(domain.getUpdatedAt())
+                .createdBy(domain.getCreatedBy())
+                .updatedBy(domain.getUpdatedBy())
                 .build();
     }
 }

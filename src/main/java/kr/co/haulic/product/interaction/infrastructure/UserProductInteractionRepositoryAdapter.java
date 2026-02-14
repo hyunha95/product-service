@@ -36,7 +36,7 @@ public class UserProductInteractionRepositoryAdapter implements UserProductInter
     }
 
     @Override
-    public List<UserProductInteraction> findByProductId(Long productId) {
+    public List<UserProductInteraction> findByProductId(String productId) {
         return jpaRepository.findByProductId(productId).stream()
                 .map(interactionMapper::toDomain)
                 .collect(Collectors.toList());

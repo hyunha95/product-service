@@ -15,8 +15,8 @@ public class RecordInteractionRequest {
     @NotBlank(message = "User ID is required")
     private String userId;
 
-    @NotNull(message = "Product ID is required")
-    private Long productId;
+    @NotBlank(message = "Product ID is required")
+    private String productId;
 
     @NotNull(message = "Interaction type is required")
     private InteractionType interactionType;

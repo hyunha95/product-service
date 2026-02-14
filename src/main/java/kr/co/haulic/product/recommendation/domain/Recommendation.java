@@ -10,11 +10,11 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 public class Recommendation implements Serializable {
-    private Long productId;
+    private String productId;
     private Double score;
     private String reason;
 
-    public static Recommendation of(Long productId, Double score, String reason) {
+    public static Recommendation of(String productId, Double score, String reason) {
         return Recommendation.builder()
             .productId(productId)
             .score(score)

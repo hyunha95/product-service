@@ -24,7 +24,7 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
     private final SimilarityCalculator similarityCalculator;
     private final RecommendationCacheRepository cacheRepository;
 
-    private Map<Long, Map<Long, Double>> similarityMatrix = new HashMap<>();
+    private Map<String, Map<String, Double>> similarityMatrix = new HashMap<>();
     private volatile boolean isModelBuilt = false;
 
     @Override
@@ -49,20 +49,20 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
             return getPopularProducts(limit);
         }
 
-        Map<Long, Double> candidateScores = new HashMap<>();
-        Set<Long> interactedProductIds = userInteractions.stream()
+        Map<String, Double> candidateScores = new HashMap<>();
+        Set<String> interactedProductIds = userInteractions.stream()
             .map(UserProductInteraction::getProductId)
             .collect(Collectors.toSet());
 
         for (UserProductInteraction interaction : userInteractions) {
-            Long productId = interaction.getProductId();
+            String productId = interaction.getProductId();
             Double interactionWeight = interaction.getWeight();
 
-            Map<Long, Double> similarProducts = similarityMatrix.get(productId);
+            Map<String, Double> similarProducts = similarityMatrix.get(productId);
             if (similarProducts == null) continue;
 
-            for (Map.Entry<Long, Double> entry : similarProducts.entrySet()) {
-                Long candidateId = entry.getKey();
+            for (Map.Entry<String, Double> entry : similarProducts.entrySet()) {
+                String candidateId = entry.getKey();
                 Double similarity = entry.getValue();
 
                 if (interactedProductIds.contains(candidateId)) continue;
@@ -73,7 +73,7 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
         }
 
         List<Recommendation> recommendations = candidateScores.entrySet().stream()
-            .sorted(Map.Entry.<Long, Double>comparingByValue().reversed())
+            .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
             .limit(limit)
             .map(e -> Recommendation.of(e.getKey(), e.getValue(), "Based on similar products"))
             .collect(Collectors.toList());
@@ -87,7 +87,7 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
     }
 
     @Override
-    public List<Recommendation> generateSimilarProducts(Long productId, int limit) {
+    public List<Recommendation> generateSimilarProducts(String productId, int limit) {
         log.info("Generating similar products for product: {}", productId);
 
         List<Recommendation> cachedSimilar = cacheRepository.getSimilarProducts(productId);
@@ -102,14 +102,14 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
             rebuildRecommendationModel();
         }
 
-        Map<Long, Double> similarProducts = similarityMatrix.get(productId);
+        Map<String, Double> similarProducts = similarityMatrix.get(productId);
         if (similarProducts == null || similarProducts.isEmpty()) {
             log.info("No similar products found for product: {}", productId);
             return Collections.emptyList();
         }
 
         List<Recommendation> recommendations = similarProducts.entrySet().stream()
-            .sorted(Map.Entry.<Long, Double>comparingByValue().reversed())
+            .sorted(Map.Entry.<String, Double>comparingByValue().reversed())
             .limit(limit)
             .map(e -> Recommendation.of(e.getKey(), e.getValue(), "Similar product"))
             .collect(Collectors.toList());
@@ -132,28 +132,28 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
             return;
         }
 
-        Map<String, Map<Long, Double>> userProductMatrix = new HashMap<>();
+        Map<String, Map<String, Double>> userProductMatrix = new HashMap<>();
         for (UserProductInteraction interaction : allInteractions) {
             userProductMatrix
                 .computeIfAbsent(interaction.getUserId(), k -> new HashMap<>())
                 .merge(interaction.getProductId(), interaction.getWeight(), Double::sum);
         }
 
-        Set<Long> allProductIds = allInteractions.stream()
+        Set<String> allProductIds = allInteractions.stream()
             .map(UserProductInteraction::getProductId)
             .collect(Collectors.toSet());
 
-        Map<Long, Map<Long, Double>> newSimilarityMatrix = new HashMap<>();
-        List<Long> productIdList = new ArrayList<>(allProductIds);
+        Map<String, Map<String, Double>> newSimilarityMatrix = new HashMap<>();
+        List<String> productIdList = new ArrayList<>(allProductIds);
 
         for (int i = 0; i < productIdList.size(); i++) {
-            Long productId1 = productIdList.get(i);
-            Map<Long, Double> similarities = new HashMap<>();
+            String productId1 = productIdList.get(i);
+            Map<String, Double> similarities = new HashMap<>();
 
             for (int j = 0; j < productIdList.size(); j++) {
                 if (i == j) continue;
 
-                Long productId2 = productIdList.get(j);
+                String productId2 = productIdList.get(j);
                 double similarity = similarityCalculator.calculateCosineSimilarity(
                     productId1, productId2, userProductMatrix
                 );
@@ -178,9 +178,10 @@ public class ItemBasedCollaborativeFilteringEngine implements RecommendationEngi
 
     private List<Recommendation> getPopularProducts(int limit) {
         return productRepository.findAll().stream()
-            .sorted(Comparator.comparingInt(Product::getViewCount).reversed())
+            .filter(p -> p.getReviewCount() != null)
+            .sorted(Comparator.comparingLong(Product::getReviewCount).reversed())
             .limit(limit)
-            .map(p -> Recommendation.of(p.getId(), (double) p.getViewCount(), "Popular product"))
+            .map(p -> Recommendation.of(p.getId(), (double) p.getReviewCount(), "Popular product"))
             .collect(Collectors.toList());
     }
 }

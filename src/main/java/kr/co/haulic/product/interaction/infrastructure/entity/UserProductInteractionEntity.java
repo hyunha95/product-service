@@ -31,7 +31,7 @@ public class UserProductInteractionEntity {
     private String userId;
 
     @Column(nullable = false)
-    private Long productId;
+    private String productId;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

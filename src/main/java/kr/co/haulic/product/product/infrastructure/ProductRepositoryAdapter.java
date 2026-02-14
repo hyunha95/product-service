@@ -11,10 +11,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- * Adapter implementation of ProductRepository
- * Translates between domain models and persistence entities using ProductMapper
- */
 @Repository
 @RequiredArgsConstructor
 public class ProductRepositoryAdapter implements ProductRepository {
@@ -23,7 +19,7 @@ public class ProductRepositoryAdapter implements ProductRepository {
     private final ProductMapper productMapper;
 
     @Override
-    public Optional<Product> findById(Long id) {
+    public Optional<Product> findById(String id) {
         return jpaProductRepository.findById(id)
                 .map(productMapper::toDomain);
     }
@@ -36,7 +32,7 @@ public class ProductRepositoryAdapter implements ProductRepository {
     }
 
     @Override
-    public List<Product> findAllById(List<Long> ids) {
+    public List<Product> findAllById(List<String> ids) {
         return jpaProductRepository.findAllById(ids).stream()
                 .map(productMapper::toDomain)
                 .collect(Collectors.toList());
@@ -44,18 +40,7 @@ public class ProductRepositoryAdapter implements ProductRepository {
 
     @Override
     public Product save(Product product) {
-        ProductEntity entity;
-
-        if (product.getId() != null) {
-            // Update existing entity
-            entity = jpaProductRepository.findById(product.getId())
-                    .map(existing -> productMapper.updateEntity(existing, product))
-                    .orElseGet(() -> productMapper.toEntity(product));
-        } else {
-            // Create new entity
-            entity = productMapper.toEntity(product);
-        }
-
+        ProductEntity entity = productMapper.toEntity(product);
         ProductEntity savedEntity = jpaProductRepository.save(entity);
         return productMapper.toDomain(savedEntity);
     }

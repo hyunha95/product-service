@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface JpaUserProductInteractionRepository extends JpaRepository<UserProductInteractionEntity, Long> {
     List<UserProductInteractionEntity> findByUserId(String userId);
-    List<UserProductInteractionEntity> findByProductId(Long productId);
+    List<UserProductInteractionEntity> findByProductId(String productId);
 }

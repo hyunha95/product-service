@@ -11,15 +11,14 @@ import java.util.HashSet;
 public class CosineSimilarityCalculator implements SimilarityCalculator {
 
     @Override
-    public double calculateCosineSimilarity(Long productId1, Long productId2, 
-                                            Map<String, Map<Long, Double>> userInteractions) {
-        // 두 상품을 모두 상호작용한 사용자 찾기
+    public double calculateCosineSimilarity(String productId1, String productId2,
+                                            Map<String, Map<String, Double>> userInteractions) {
         Set<String> users1 = new HashSet<>();
         Set<String> users2 = new HashSet<>();
 
-        for (Map.Entry<String, Map<Long, Double>> entry : userInteractions.entrySet()) {
+        for (Map.Entry<String, Map<String, Double>> entry : userInteractions.entrySet()) {
             String userId = entry.getKey();
-            Map<Long, Double> products = entry.getValue();
+            Map<String, Double> products = entry.getValue();
 
             if (products.containsKey(productId1)) {
                 users1.add(userId);
@@ -29,7 +28,6 @@ public class CosineSimilarityCalculator implements SimilarityCalculator {
             }
         }
 
-        // 공통 사용자
         Set<String> commonUsers = new HashSet<>(users1);
         commonUsers.retainAll(users2);
 
@@ -37,13 +35,12 @@ public class CosineSimilarityCalculator implements SimilarityCalculator {
             return 0.0;
         }
 
-        // 코사인 유사도 계산
         double dotProduct = 0.0;
         double norm1 = 0.0;
         double norm2 = 0.0;
 
         for (String userId : commonUsers) {
-            Map<Long, Double> userProducts = userInteractions.get(userId);
+            Map<String, Double> userProducts = userInteractions.get(userId);
             double rating1 = userProducts.getOrDefault(productId1, 0.0);
             double rating2 = userProducts.getOrDefault(productId2, 0.0);
 

@@ -58,7 +58,7 @@ public class RecommendationCacheRepository {
         }
     }
 
-    public void saveSimilarProducts(Long productId, List<Recommendation> recommendations) {
+    public void saveSimilarProducts(String productId, List<Recommendation> recommendations) {
         try {
             String key = SIMILAR_PRODUCTS_KEY_PREFIX + productId;
             String value = objectMapper.writeValueAsString(recommendations);
@@ -69,7 +69,7 @@ public class RecommendationCacheRepository {
         }
     }
 
-    public List<Recommendation> getSimilarProducts(Long productId) {
+    public List<Recommendation> getSimilarProducts(String productId) {
         try {
             String key = SIMILAR_PRODUCTS_KEY_PREFIX + productId;
             String value = redisTemplate.opsForValue().get(key);
@@ -83,7 +83,7 @@ public class RecommendationCacheRepository {
         }
     }
 
-    public void saveSimilarityMatrix(Map<Long, Map<Long, Double>> similarityMatrix) {
+    public void saveSimilarityMatrix(Map<String, Map<String, Double>> similarityMatrix) {
         try {
             String value = objectMapper.writeValueAsString(similarityMatrix);
             redisTemplate.opsForValue().set(SIMILARITY_MATRIX_KEY, value, Duration.ofSeconds(similarityCacheTtl));
@@ -93,13 +93,13 @@ public class RecommendationCacheRepository {
         }
     }
 
-    public Map<Long, Map<Long, Double>> getSimilarityMatrix() {
+    public Map<String, Map<String, Double>> getSimilarityMatrix() {
         try {
             String value = redisTemplate.opsForValue().get(SIMILARITY_MATRIX_KEY);
             if (value == null) {
                 return Collections.emptyMap();
             }
-            return objectMapper.readValue(value, new TypeReference<Map<Long, Map<Long, Double>>>() {});
+            return objectMapper.readValue(value, new TypeReference<Map<String, Map<String, Double>>>() {});
         } catch (JsonProcessingException e) {
             log.error("Failed to deserialize similarity matrix", e);
             return Collections.emptyMap();
