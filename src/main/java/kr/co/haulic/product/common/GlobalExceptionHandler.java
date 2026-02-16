@@ -1,6 +1,7 @@
 package kr.co.haulic.product.common;
 
 import jakarta.servlet.http.HttpServletRequest;
+import kr.co.haulic.product.category.domain.exception.*;
 import kr.co.haulic.product.common.dto.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
@@ -98,6 +99,57 @@ public class GlobalExceptionHandler {
                 .error("Type Mismatch")
                 .message(String.format("Parameter '%s' should be of type %s",
                         ex.getName(), ex.getRequiredType() != null ? ex.getRequiredType().getSimpleName() : "unknown"))
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.badRequest().body(response);
+    }
+
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCategoryNotFound(
+            CategoryNotFoundException ex, HttpServletRequest request) {
+
+        log.warn("Category not found for {} {} - {}", request.getMethod(), request.getRequestURI(), ex.getMessage());
+
+        ErrorResponse response = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.NOT_FOUND.value())
+                .error("Not Found")
+                .message(ex.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+    }
+
+    @ExceptionHandler({CategoryHasChildrenException.class, DuplicateCategoryNameException.class})
+    public ResponseEntity<ErrorResponse> handleCategoryConflict(
+            RuntimeException ex, HttpServletRequest request) {
+
+        log.warn("Category conflict for {} {} - {}", request.getMethod(), request.getRequestURI(), ex.getMessage());
+
+        ErrorResponse response = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.CONFLICT.value())
+                .error("Conflict")
+                .message(ex.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler({CategoryDepthLimitExceededException.class, InvalidCategoryNameException.class})
+    public ResponseEntity<ErrorResponse> handleCategoryBadRequest(
+            RuntimeException ex, HttpServletRequest request) {
+
+        log.warn("Category bad request for {} {} - {}", request.getMethod(), request.getRequestURI(), ex.getMessage());
+
+        ErrorResponse response = ErrorResponse.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error("Bad Request")
+                .message(ex.getMessage())
                 .path(request.getRequestURI())
                 .build();
 
