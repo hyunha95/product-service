@@ -4,6 +4,7 @@ import kr.co.haulic.product.config.GatewayProperties;
 import kr.co.haulic.product.product.domain.Product;
 import kr.co.haulic.product.product.domain.ProductRepository;
 import kr.co.haulic.product.recommendation.application.GetPersonalizedRecommendationsUseCase;
+import kr.co.haulic.product.recommendation.application.GetPopularProductsUseCase;
 import kr.co.haulic.product.recommendation.application.GetSimilarProductsUseCase;
 import kr.co.haulic.product.recommendation.domain.Recommendation;
 import kr.co.haulic.product.recommendation.domain.RecommendationEngine;
@@ -24,6 +25,7 @@ import java.util.stream.Collectors;
 public class RecommendationController {
 
     private final GetPersonalizedRecommendationsUseCase getPersonalizedRecommendationsUseCase;
+    private final GetPopularProductsUseCase getPopularProductsUseCase;
     private final GetSimilarProductsUseCase getSimilarProductsUseCase;
     private final RecommendationEngine recommendationEngine;
     private final ProductRepository productRepository;
@@ -31,16 +33,24 @@ public class RecommendationController {
 
     @GetMapping("/personalized")
     public List<RecommendationResponse> getPersonalizedRecommendations(
-        @RequestParam String userId,
+        @RequestHeader(value = "X-User-Id", required = false) String userId,
         @RequestParam(defaultValue = "10") int limit
     ) {
         log.info("Personalized recommendations request: userId={}, limit={}", userId, limit);
 
-        List<Recommendation> recommendations = getPersonalizedRecommendationsUseCase.getPersonalizedRecommendations(userId, limit);
-        log.info("Generated {} raw recommendations for userId={}", recommendations.size(), userId);
+        List<Recommendation> recommendations = List.of();
+        if (userId != null && !userId.isBlank()) {
+            recommendations = getPersonalizedRecommendationsUseCase.getPersonalizedRecommendations(userId, limit);
+            log.info("Generated {} personalized recommendations for userId={}", recommendations.size(), userId);
+        }
+
+        if (recommendations.isEmpty()) {
+            recommendations = getPopularProductsUseCase.getPopularProducts(limit);
+            log.info("Falling back to {} popular products", recommendations.size());
+        }
 
         List<RecommendationResponse> response = enrichWithProductInfo(recommendations);
-        log.info("Returning {} enriched recommendations for userId={}", response.size(), userId);
+        log.info("Returning {} recommendations", response.size());
         return response;
     }
 

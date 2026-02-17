@@ -7,4 +7,5 @@ public interface UserProductInteractionRepository {
     List<UserProductInteraction> findByUserId(String userId);
     List<UserProductInteraction> findByProductId(String productId);
     List<UserProductInteraction> findAll();
+    List<String> findPopularProductIds(int limit);
 }

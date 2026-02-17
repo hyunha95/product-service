@@ -48,4 +48,9 @@ public class UserProductInteractionRepositoryAdapter implements UserProductInter
                 .map(interactionMapper::toDomain)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> findPopularProductIds(int limit) {
+        return jpaRepository.findPopularProductIds(limit);
+    }
 }
