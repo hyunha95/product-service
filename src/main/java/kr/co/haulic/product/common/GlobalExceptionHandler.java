@@ -3,6 +3,7 @@ package kr.co.haulic.product.common;
 import jakarta.servlet.http.HttpServletRequest;
 import kr.co.haulic.product.category.domain.exception.*;
 import kr.co.haulic.product.common.dto.ErrorResponse;
+import kr.co.haulic.product.product.domain.exception.ProductNotFoundException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -124,11 +125,11 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(response);
     }
 
-    @ExceptionHandler(CategoryNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleCategoryNotFound(
-            CategoryNotFoundException ex, HttpServletRequest request) {
+    @ExceptionHandler({CategoryNotFoundException.class, ProductNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleNotFound(
+            RuntimeException ex, HttpServletRequest request) {
 
-        log.warn("Category not found for {} {} - {}", request.getMethod(), request.getRequestURI(), ex.getMessage());
+        log.warn("Resource not found for {} {} - {}", request.getMethod(), request.getRequestURI(), ex.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .timestamp(LocalDateTime.now())
